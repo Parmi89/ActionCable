@@ -11,7 +11,25 @@ consumer.subscriptions.create("RoomChannel", {
   },
 
   received(data) {
-  	console.log(data)
+
+     $('#msg').append('<div class="message">' + data.content + '</div>') 
+     $('#message_content')[0].value = ""
+     console.log(data)
+
     // Called when there's incoming data on the websocket for this channel
   }
 });
+
+    $(document).on('turbolinks:load', function() {
+       
+       $('#message_content').on('keydown', function (event) {
+    
+     if (event.keyCode === 13 ) {
+     
+       $('input').click()
+     console.log('yes we hitted enter!')
+     }  
+    })
+
+   })
+
